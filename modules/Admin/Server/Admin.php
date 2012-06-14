@@ -60,7 +60,8 @@ class Admin {
             if ($post[0]->password != "") {
                 $salt = sha1("1" . $vp . "1");
                 $password = "$salt$vp$salt";
-                $vp = sha1(mysql_real_escape_string($password));
+                // mysql_real_escape_string using mysql_connect, so I remove it
+                $vp = sha1($password);
                 $pswd = " password = '$vp',";
             } else {
                 $pswd = "";
